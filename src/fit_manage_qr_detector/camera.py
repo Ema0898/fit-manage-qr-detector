@@ -39,10 +39,10 @@ class Camera:
                 processedImage = self._preprocessImage(img)
                 self._processFrame(processedImage)
 
-                cv2.imshow("img", processedImage)
+                #cv2.imshow("img", processedImage)
 
-                if cv2.waitKey(1) & 0xFF == 27:
-                    break
+                #if cv2.waitKey(1) & 0xFF == 27:
+                #    break
 
         except Exception as e:
             self.logger.log_error("Something went wrong. {}".format(str(e)))
