@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fit-manage-qr-detector"
+version = "1.0.0"
+description = "QRCode detector app for fit manage distribution"
+requires-python = ">=3.12"
+authors = [
+    { name="Emmanuelle Aguilar Sanchez", email="aguisnchez@gmail.com" }
+]
+dependencies = [
+    "pyzbar",
+    "opencv-python",
+    "systemd-python",
+    "requests",
+    "RPi.GPIO"
+]
+
+[project.scripts]
+fit-manage-qr-detector = "fit_manage_qr_detector.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

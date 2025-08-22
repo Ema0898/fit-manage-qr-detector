@@ -1,0 +1,15 @@
+[Unit]
+Description=Fit manage qr code detector service init unit
+Requires=network.target
+After=network.target
+
+[Service]
+Restart=on-failure
+User=fit-manage-user
+Group=fit-manage-user
+StandardOutput=journal
+StandardError=journal
+ExecStart=/usr/bin/fit-manage-qr-detector
+
+[Install]
+WantedBy=multi-user.target
