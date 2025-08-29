@@ -2,6 +2,7 @@ import cv2
 import queue
 import time
 import threading
+import os
 from pyzbar.pyzbar import decode
 from pyzbar.pyzbar import ZBarSymbol
 from fit_manage_qr_detector.logger import Logger
@@ -19,6 +20,7 @@ class Camera:
         self.last_time = 0
         self.cap = None
         self.stop = False
+        self.show_image = os.environ.get('QR_DETECTOR_DISPLAY_IMAGE', 'False').lower() in ('true', '1')
 
     def run(self):
         try:
@@ -39,10 +41,11 @@ class Camera:
                 processedImage = self._preprocessImage(img)
                 self._processFrame(processedImage)
 
-                #cv2.imshow("img", processedImage)
+                if self.show_image:
+                    cv2.imshow("img", processedImage)
 
-                #if cv2.waitKey(1) & 0xFF == 27:
-                #    break
+                if cv2.waitKey(1) & 0xFF == 27:
+                   break
 
         except Exception as e:
             self.logger.log_error("Something went wrong. {}".format(str(e)))
